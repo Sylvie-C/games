@@ -6,7 +6,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background: black;
-  background-image: url("../public/images/pacman.gif");
+  background-image: url("assets/images/pacman.gif");
 
   background-repeat: repeat-y;
   background-position-x: right;

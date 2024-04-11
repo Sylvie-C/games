@@ -1,13 +1,20 @@
 import './App.css';
-import Container from "./Container/Container" ; 
+import { BrowserRouter , Routes , Route } from "react-router-dom" ; 
+
+import Header from "./Header/Header" ; 
+import ListFr from "./List/ListFr" ; 
+import ListEn from "./List/ListEn" ; 
 
 function App() {
   return (
-    <div className="App">
-      <h1>Games</h1>
-      <Container/>
-    </div>
-  );
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route index element={<ListFr/>} />
+        <Route path="/listen" element={<ListEn/>} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
