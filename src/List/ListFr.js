@@ -47,7 +47,7 @@ function ListFr () {
             <button data-gameid="ft" onClick={ (event) => toggleDisplay(event) } >
               <h2>Bonne Aventure</h2>
               <p> 
-                Avez-vous une question à poser à la diseuse de bonne aventure ? 
+                Avez-vous une question à poser à la diseuse de bonne aventure ? <br/>
                 Par ici s'il vous plaît ... 
               </p>
             </button>

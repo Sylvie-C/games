@@ -1,54 +1,60 @@
-import { useState } from "react" ; 
+import { useState , useEffect } from "react" ; 
 import "./List.css" ; 
 
-import FortunetellerFr from "../Fortuneteller/FortunetellerFr" ; 
+import FortunetellerEn from "../Fortuneteller/FortunetellerEn" ; 
 import Minesweeper from "../Minesweeper/Minesweeper";
 
 function ListEn () {
   const [ display , setDisplay ] = useState("showlist") ; 
-  const [ gameIdent , setGameid ] = useState("") ; 
+  const [ gameIdent , setGameid ] = useState("") ;
+  const [ backgroundStyle , setBackground ] = useState("") ; 
+  const [ closeBtnStyle , setCloseBtn ] = useState("") ; 
+  const [ gameContent , setGame ] = useState(null) ; 
 
-  let background = "" ; 
-  let gameComponent = null ; 
-
-  const toggleDisplay = (gameId) => {
-      setDisplay ("showgame") ; 
-      setGameid (gameId) ; 
-
-      console.log ("gameId ? : " , gameId) ; 
-  } ; 
+  const toggleDisplay = (event) => {
+    setDisplay ("showgame") ; 
+    setGameid (event.currentTarget.dataset.gameid) ; 
+  }
 
   const closeGame = () => {
     setDisplay ("showlist") ; 
   }
 
-  console.log ("gameIdent ? : " , gameIdent) ; 
+  useEffect ( () => {
+    switch (gameIdent) {
+      case "ft" : 
+        setBackground ("ftBackground") ; 
+        setCloseBtn ("ftClose") ; 
+        setGame (<FortunetellerEn />) ; 
+        break;
+      case "mine" : 
+        setBackground ("mineBackground") ;
+        setCloseBtn ("mineClose") ; 
+        setGame (<Minesweeper />) ; 
+        break; 
+      default : 
+        setBackground ("") ; 
+    }
+  } , [gameIdent] ) ; 
+
 
   return(
     <>
       {
         display === `showlist` ?
-        <div 
-          className="gamesCardsblock" 
-          onClick= { 
-            (event) => {
-              let gameId = event.target.dataset.gameid ; 
-              toggleDisplay (gameId)
-            } 
-          }
-        >
+        <div className="gamesCardsblock" >
           <section className="fortuneteller">
-            <button data-gameid="ft">
+            <button data-gameid="ft" onClick={ (event) => toggleDisplay(event) } >
               <h2>The Fortuneteller</h2>
               <p> 
-                Do you have something to ask the Fortune teller ? 
+                Do you have something to ask the Fortune teller ? <br />
                 This way please ...
               </p>
             </button>
           </section>
 
           <section className="minesweeper">
-            <button data-gameid="mine">
+            <button data-gameid="mine" onClick={ (event) => toggleDisplay(event) } >
               <h2>Minesweeper</h2>
               <p> 
                 Discover all the boxes without clicking on one of the 5 bombs !
@@ -58,10 +64,10 @@ function ListEn () {
         </div>
         :
         <div className="modal">
-          <div className={`modalContainer ${background}`}>
-            <p className="modalClose" onClick = { closeGame }>X</p>
+          <div className={`modalContainer ${backgroundStyle}`}>
+            <p className={`modalClose ${closeBtnStyle}`} onClick={closeGame}>X</p>
             <div className="modalContent">
-              {gameComponent}
+              {gameContent}
             </div>
           </div>
         </div>

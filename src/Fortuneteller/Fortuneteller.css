@@ -1,32 +1,63 @@
 
-.modalContent {  
+.ftContainer {  
   border-radius: 24px; 
   width: inherit; 
   height: inherit; 
+
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+
+  gap: 30px; 
 }
 
-.modalContent p {
-  font-size: 36px; 
-  font-weight: 500; 
-  padding: 10px; 
-  background: rgba(0,255,255,0.5) ; 
-  border-radius: 24px; 
-}
-
-.modalContent button {
+.ftResultBtn {
   font-family: "euphoria"; 
   font-size: 26px; 
   padding: 8px; 
-  background: rgba(0,255,255,0.5) ; 
+  background: rgba(25, 120, 120, 0.7) ; 
   border-radius: 24px; 
   border: none; 
 
-  transition: all 0.3s ease-in-out ; 
+  transition: box-shadow 0.3s ease-in-out , opacity 3s ; 
 }
 
-.modalContent button:hover {
+.ftResultBtn:hover {
   cursor: pointer; 
   box-shadow: white 0 0 28px; 
   border: solid white 1px; 
+} 
+
+.ftTextContainer {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px; 
+  background: rgba(25, 120, 120, 0.7) ; 
+
+  border-radius: 24px; 
+  width: 600px; 
+  height: 150px; 
+  transition: all 3s ; 
 }
 
+.ftTextContainer p {
+  font-size: 32px;
+  text-align: center;
+
+  transition: opacity 3s ; 
+  transform-origin:center;
+}
+
+@media (max-width: 480px) {
+  .ftResultBtn:active {
+    box-shadow: white 0 0 28px; 
+    border: solid white 1px; 
+  } 
+}
+
+@media (max-width: 767px) {
+  .ftTextContainer {
+    max-width: fit-content;
+  }
+}
