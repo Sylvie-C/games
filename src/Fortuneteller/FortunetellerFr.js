@@ -11,53 +11,58 @@ const replies = [
 ] ; 
 
 function FortunetellerFr () {
-  const [ result , setResult ] = useState(false) ; 
-
-  const resultBtn = document.querySelector(".ftResultBtn") ; 
-  const textContainer = document.querySelector(".ftTextContainer") ; 
-  const ftTextContent = document.querySelector(".ftTextContent") ; 
+  const [ result , setResult ] = useState(false) ;  
 
   const answer = () => {
     setResult(true) ; 
   }
 
+  const gameStyle = (result) => {
+    const resultBtn = document.querySelector(".ftResultBtn") ; 
+    const textContainer = document.querySelector(".ftTextContainer") ; 
+    const ftTextContent = document.querySelector(".ftTextContent") ;
+
+    if (result === true) { 
+      textContainer.style.width = "200px" ; 
+      textContainer.style.height = "200px" ; 
+      textContainer.style.borderRadius = "50%" ; 
+
+      resultBtn.style.opacity = "0" ; 
+
+      ftTextContent.style.transform = "scale(0)" ; 
+      ftTextContent.style.opacity = "0" ; 
+
+      setTimeout ( () => {
+        textContainer.style.boxShadow = "white 0 0 50px" ; 
+
+        const number = Math.floor(Math.random() * replies.length) ; 
+        const resultText = replies[number] ; 
+        ftTextContent.textContent = resultText ; 
+
+        ftTextContent.style.opacity = "1" ; 
+        ftTextContent.style.transform = "scale(1)" ; 
+      } , 3000) ; 
+
+    } 
+  }
+
   useEffect (
     () => { 
-      if (result === true) { 
-        textContainer.style.width = "200px" ; 
-        textContainer.style.height = "200px" ; 
-        textContainer.style.borderRadius = "50%" ; 
-
-        resultBtn.style.opacity = "0" ; 
-
-        ftTextContent.style.transform = "scale(0)" ; 
-        ftTextContent.style.opacity = "0" ; 
-
-        setTimeout ( () => {
-          textContainer.style.boxShadow = "white 0 0 50px" ; 
-
-          const number = Math.floor(Math.random() * replies.length) ; 
-          const resultText = replies[number] ; 
-          ftTextContent.textContent = resultText ; 
-
-          ftTextContent.style.opacity = "1" ; 
-          ftTextContent.style.transform = "scale(1)" ; 
-        } , 3000) ; 
-
-      } 
+      gameStyle(result) ; 
     } , [result]
   ) ; 
  
   return (
-      <div className="ftContainer">
-      <div className="ftTextContainer">
-        <p className="ftTextContent">
-          Concentrez-vous et posez votre question. <br/>
-          Cliquez sur le bouton "Réponse".
-        </p>
-      </div>
-        <button className="ftResultBtn" onClick={answer}>Réponse</button>
-      </div>
+    <div className="ftContainer">
+    <div className="ftTextContainer">
+      <p className="ftTextContent">
+        Concentrez-vous et posez votre question. <br/>
+        Cliquez sur le bouton "Réponse".
+      </p>
+    </div>
+      <button className="ftResultBtn" onClick={answer}>Réponse</button>
+    </div>
   )
 }
+
 export default FortunetellerFr ; 

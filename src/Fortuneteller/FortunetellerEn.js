@@ -13,16 +13,16 @@ const replies = [
 function FortunetellerFr () {
   const [ result , setResult ] = useState(false) ; 
 
-  const resultBtn = document.querySelector(".ftResultBtn") ; 
-  const textContainer = document.querySelector(".ftTextContainer") ; 
-  const ftTextContent = document.querySelector(".ftTextContent") ; 
-
   const answer = () => {
     setResult(true) ; 
   }
 
   useEffect (
     () => { 
+      const resultBtn = document.querySelector(".ftResultBtn") ; 
+      const textContainer = document.querySelector(".ftTextContainer") ; 
+      const ftTextContent = document.querySelector(".ftTextContent") ; 
+      
       if (result === true) { 
         textContainer.style.width = "200px" ; 
         textContainer.style.height = "200px" ; 

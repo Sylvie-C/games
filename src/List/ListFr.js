@@ -2,7 +2,7 @@ import { useState , useEffect } from "react" ;
 import "./List.css" ; 
 
 import FortunetellerFr from "../Fortuneteller/FortunetellerFr" ; 
-import Minesweeper from "../Minesweeper/Minesweeper";
+import MinesweeperFr from "../Minesweeper/MinesweeperFr";
 
 function ListFr () {
   const [ display , setDisplay ] = useState("showlist") ; 
@@ -30,7 +30,7 @@ function ListFr () {
       case "mine" : 
         setBackground ("mineBackground") ;
         setCloseBtn ("mineClose") ; 
-        setGame (<Minesweeper />) ; 
+        setGame (<MinesweeperFr />) ; 
         break; 
       default : 
         setBackground ("") ; 
