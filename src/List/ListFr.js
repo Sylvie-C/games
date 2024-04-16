@@ -57,7 +57,7 @@ function ListFr () {
             <button data-gameid="mine" onClick={ (event) => toggleDisplay(event) } >
               <h2>Minesweeper</h2>
               <p> 
-                Découvrez toutes les cases sans cliquer sur une des 5 bombes !
+                Découvrez toutes les cases sans cliquer sur une bombe !
               </p>
             </button>
           </section>

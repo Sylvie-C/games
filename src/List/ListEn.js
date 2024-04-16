@@ -57,7 +57,7 @@ function ListEn () {
             <button data-gameid="mine" onClick={ (event) => toggleDisplay(event) } >
               <h2>Minesweeper</h2>
               <p> 
-                Discover all the boxes without clicking on one of the 5 bombs !
+                Discover all the boxes without clicking on a bomb !
               </p>
             </button>
           </section>
