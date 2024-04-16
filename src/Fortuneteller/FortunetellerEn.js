@@ -19,11 +19,11 @@ function FortunetellerFr () {
 
   useEffect (
     () => { 
-      const resultBtn = document.querySelector(".ftResultBtn") ; 
-      const textContainer = document.querySelector(".ftTextContainer") ; 
-      const ftTextContent = document.querySelector(".ftTextContent") ; 
-      
       if (result === true) { 
+        const resultBtn = document.querySelector(".ftResultBtn") ; 
+        const textContainer = document.querySelector(".ftTextContainer") ; 
+        const ftTextContent = document.querySelector(".ftTextContent") ; 
+
         textContainer.style.width = "200px" ; 
         textContainer.style.height = "200px" ; 
         textContainer.style.borderRadius = "50%" ; 

@@ -1,0 +1,46 @@
+.mineContainer {
+  display: grid; 
+  grid-template-columns: repeat(5 , 60px);
+  grid-template-rows: repeat(5 , 60px );
+
+  gap: 10px; 
+
+  justify-content: center; 
+}
+
+.mineContainer img {
+  width: 100%; 
+}
+
+.mineContainer img:hover {
+  cursor: pointer; 
+}
+
+.pending {
+  width: 100%; 
+  height: 100%; 
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  font-size: 20px;
+  background: rgba(0,0,0,0.5) ; 
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pending button {
+  background: rgb(10, 90, 90); 
+  font-family: pixel; 
+  width: 100px; 
+  height: 50px; 
+  border-radius: 24px; 
+}
+
+.pending button:hover {
+  cursor: pointer; 
+  color: rgb(10,90,90); 
+  background: white; 
+}
