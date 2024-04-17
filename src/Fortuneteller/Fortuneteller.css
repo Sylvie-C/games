@@ -49,6 +49,9 @@
   transform-origin:center;
 }
 
+
+/* -------  MEDIA QUERIES  ------- */
+
 @media (max-width: 480px) {
   .ftResultBtn:active {
     box-shadow: white 0 0 28px; 
@@ -56,7 +59,7 @@
   } 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .ftTextContainer {
     max-width: fit-content;
   }
