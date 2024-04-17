@@ -10,50 +10,212 @@ function MinesweeperFr () {
     mineContainer.style.display = "none" ; 
   }
 
-  // game board initialization function
-  const gameBoardInit = (rowsNb , colNb , bombsNb) => { 
-    const tilesNb = rowsNb * colNb ; 
-    let gameBoard = new Array (tilesNb).fill(null) ;
+  // Generate array of 5 random numbers for bombs
+  const bombsArrIndexGen = (bombsNb , tilesNb) => {
     let bombIndex = 0 ; 
-    let bombIndexArr = [] ; 
+    let bombIndexArr = [] ;
 
-    // Array of 5 random numbers for bombs
     for (let i=0; i<bombsNb; i++) {
       // choose random number from 0 to 24 included
       bombIndex = Math.floor ( Math.random() * tilesNb ) ; 
 
-      // if random index not already chosen, add it to array
-      if ( ! (bombIndexArr.includes(bombIndex))) {
-        bombIndexArr.push(bombIndex) ; 
-      } else {
-        // if random index already chosen, add another one to array
-        bombIndex = Math.floor ( Math.random() * tilesNb +1 ) ; 
-        bombIndexArr.push(bombIndex) ; 
+      // if random index already chosen, add another one to array
+      if (bombIndexArr.includes(bombIndex)) {
+        bombIndex = Math.floor ( Math.random() * tilesNb ) ; 
       }
-    }
+      bombIndexArr.push(bombIndex) ; 
+    } 
 
-    for (let i=0; i<gameBoard.length; i++) {
-      if (bombIndexArr.includes(i)) {
-        gameBoard[i] = <img key={`tile${i}`} src={require("../assets/images/minesweeper/bomb.png")} alt="bomb tile"/>
-      } else {
-        gameBoard[i] = <img key={`tile${i}`} src={require("../assets/images/minesweeper/empty.png")} alt="empty tile"/>
-      }
-    }
-
-    return gameBoard ; 
+    return bombIndexArr ; 
   }
 
-  const initialGameboard = gameBoardInit(5,5,5) ; 
-  const gameBoard = initialGameboard ; 
+  // Function to add bombs on game board
+  const addBombs = (board , bombsArray) => {
+    const arrayOut = board.map (
+      (elt , index) => {
+        if (elt === null) { 
+          if ( bombsArray.includes(index) ) {
+            return "X" ; 
+          } 
+        }
+        return "null" ; 
+      }
+    ) ;  
+    return arrayOut ; 
+  }
 
-/*   // add game board to Component State
-  const [ gameBoard , setGameboard ] = useState(initialGameboard) ; 
+  // detect if a tile is at left of game board
+  const left = (tileIndex , columnsNb) => { 
+    const modulo = tileIndex % columnsNb ; 
+    if (tileIndex === 0 || modulo === 0) {
+      return true ; 
+    } else {
+      return false ; 
+    }
+  }
 
-  useEffect (
-    () => {
-      
-    } 
-  ) ;  */
+  // detect if a tile is at right of game board (use of modulo in calculations)
+  const right = (tileIndex , columnsNb) => {
+    const modulo = tileIndex % columnsNb ; 
+    if (tileIndex === (columnsNb-1) || modulo === (columnsNb-1) ) {
+      return true ; 
+    } else {
+      return false; 
+    }
+  }
+
+  const center = (tileIndex , columnsNb) => {
+    if ( !(right(tileIndex , columnsNb)) && !(left(tileIndex , columnsNb)) ) {
+      return true ; 
+    }
+  }
+
+  // count bombs around a tile (return number of bombs around). 
+  const bombsCounter = (currentTileIndex , gameBoard , colNb) => {
+    let counter = 0 ; 
+    let tileAroundIndex ; 
+
+    const centerBombOffset = [ -(colNb+1), -colNb, -(colNb-1), -1 , 1 , colNb+1 , colNb, colNb-1 ] ; 
+    const leftBombOffset = [ -colNb , -(colNb-1) , +1 , +colNb , +(colNb+1) ] ; 
+    const rightBombOffset = [ -(colNb+1) , -colNb , -1 , +(colNb-1) , +colNb ] ;
+
+    // if tile is on left of game board
+    if (left(currentTileIndex , colNb)) {
+
+      // parse corresponding offset of tiles around
+      for (let i=0; i<leftBombOffset.length; i++) {
+        tileAroundIndex = currentTileIndex + leftBombOffset[i] ; 
+
+        if (tileAroundIndex >= 0 && tileAroundIndex < gameBoard.length) 
+        {
+          // count number of bombs around the tile
+          if (gameBoard[tileAroundIndex] === "X") {
+            counter += 1 ; 
+          }
+        }
+      }
+    }
+
+    // if tile is on right of game board
+    if (right(currentTileIndex , colNb)) {
+      for (let i=0; i<rightBombOffset.length; i++) {
+        tileAroundIndex = currentTileIndex + rightBombOffset[i] ; 
+
+        if (tileAroundIndex >= 0 && tileAroundIndex < gameBoard.length)
+        {if (gameBoard[tileAroundIndex] === "X") {
+          counter += 1 ; 
+        }}
+      }
+    }
+
+    // if tile is in center of game board
+    if (center(currentTileIndex , colNb)) {
+      for (let i=0; i<centerBombOffset.length; i++) {
+        tileAroundIndex = currentTileIndex + centerBombOffset[i] ; 
+
+        if (tileAroundIndex >= 0 && tileAroundIndex < gameBoard.length)
+        {
+          if (gameBoard[tileAroundIndex] === "X") {
+            counter += 1 ; 
+          }
+        }
+      }
+    }
+
+    return counter ; 
+  }
+
+  // display final game board images from array of data. Returns new array
+  const displayGen = (dataArr) => {
+    let arrayOutput = [] ; 
+
+    for (let i=0; i < dataArr.length; i++) {
+      switch (dataArr[i]) {
+        case ("X") :
+          arrayOutput.push(
+            <img key={`tile${i}`} src={require("../assets/images/minesweeper/bomb.png")} alt=""/> 
+          )
+        break; 
+        case 0 : 
+          arrayOutput.push(
+            <img key={`tile${i}`} src={require("../assets/images/minesweeper/0.png")} alt=""/>
+          )
+        break; 
+        case 1 : 
+          arrayOutput.push
+          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/1.png")} alt=""/>)
+        break; 
+        case 2 : 
+        arrayOutput.push
+          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/2.png")} alt=""/>)
+        break; 
+        case 3 : 
+          arrayOutput.push
+          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/3.png")} alt=""/>)
+        break; 
+        case 4 :
+          arrayOutput.push 
+          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/4.png")} alt=""/>)
+        break; 
+        case 5 : 
+          arrayOutput.push
+          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/5.png")} alt=""/>)
+        break; 
+        case 6 : 
+          arrayOutput.push
+          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/6.png")} alt=""/>)
+        break; 
+        case 7 : 
+          arrayOutput.push
+          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/7.png")} alt=""/>)
+        break; 
+        case 8 : 
+          arrayOutput.push
+          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/8.png")} alt=""/>)
+        break; 
+        default : 
+          arrayOutput[i] = <img key={`tile${i}`} src={require("../assets/images/minesweeper/empty.png")} alt=""/>
+      }
+    }
+
+    return arrayOutput ; 
+  }
+
+  // game board initialization function
+  const gameBoardGen = (rowsNb , colNb , bombsNb) => { 
+    const tilesNb = rowsNb * colNb ; 
+    let gameBoard = new Array (tilesNb).fill(null) ; // empty game board initialization
+    const bombsArr = bombsArrIndexGen (bombsNb , tilesNb) ; // generate array of bombs index
+
+    // update gameBoard with bombs
+    gameBoard = addBombs(gameBoard , bombsArr) ; 
+
+    // add numbers from initial game board (gameBoard variable)
+    let bombsAroundTile = 0 ; 
+    let finalGameBoard = [] ; 
+    
+    for (let i=0; i<gameBoard.length; i++) {
+      bombsAroundTile = bombsCounter ( i , gameBoard , colNb) ; 
+      if (gameBoard[i] === "X") {
+        finalGameBoard.push("X") ; 
+      } else {
+        finalGameBoard.push(bombsAroundTile) ;
+      } 
+    }
+
+    // Generate display (images) from array of data
+    finalGameBoard = displayGen(finalGameBoard) ; 
+
+    return finalGameBoard ; 
+  }
+
+  const gameBoard = gameBoardGen(5,5,5) ; 
+
+/*   const [ gameBoard , setGameboard ] = useState (null) ; 
+
+  useEffect ( () => {
+    setGameboard ( gameBoardGen(5,5,5) ) ; 
+  } , [gameBoardGen]) ; */ 
 
   return (
     <>
