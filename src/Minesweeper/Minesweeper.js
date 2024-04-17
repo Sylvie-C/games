@@ -1,5 +1,5 @@
 import "./Minesweeper.css" ; 
-import { useState , useEffect } from "react" ; 
+// import { useState , useEffect } from "react" ; 
 
 function MinesweeperFr () {
 
@@ -44,15 +44,16 @@ function MinesweeperFr () {
   }
 
   const initialGameboard = gameBoardInit(5,5,5) ; 
+  const gameBoard = initialGameboard ; 
 
-  // add game board to Component State
+/*   // add game board to Component State
   const [ gameBoard , setGameboard ] = useState(initialGameboard) ; 
 
   useEffect (
     () => {
       
     } 
-  ) ; 
+  ) ;  */
 
   return (
     <>
