@@ -1,7 +1,8 @@
 import "./Minesweeper.css" ; 
-// import { useState , useEffect } from "react" ; 
+// import "../Tile/Tile.css" ; 
+import Tile from "../Tile/Tile" ; 
 
-function MinesweeperFr () {
+function Minesweeper () {
 
   const hidePending = () => {
     const modalPending = document.querySelector(".pending") ; 
@@ -125,62 +126,6 @@ function MinesweeperFr () {
     return counter ; 
   }
 
-  // display final game board images from array of data. Returns new array
-  const displayGen = (dataArr) => {
-    let arrayOutput = [] ; 
-
-    for (let i=0; i < dataArr.length; i++) {
-      switch (dataArr[i]) {
-        case ("X") :
-          arrayOutput.push(
-            <img key={`tile${i}`} src={require("../assets/images/minesweeper/bomb.png")} alt=""/> 
-          )
-        break; 
-        case 0 : 
-          arrayOutput.push(
-            <img key={`tile${i}`} src={require("../assets/images/minesweeper/0.png")} alt=""/>
-          )
-        break; 
-        case 1 : 
-          arrayOutput.push
-          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/1.png")} alt=""/>)
-        break; 
-        case 2 : 
-        arrayOutput.push
-          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/2.png")} alt=""/>)
-        break; 
-        case 3 : 
-          arrayOutput.push
-          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/3.png")} alt=""/>)
-        break; 
-        case 4 :
-          arrayOutput.push 
-          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/4.png")} alt=""/>)
-        break; 
-        case 5 : 
-          arrayOutput.push
-          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/5.png")} alt=""/>)
-        break; 
-        case 6 : 
-          arrayOutput.push
-          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/6.png")} alt=""/>)
-        break; 
-        case 7 : 
-          arrayOutput.push
-          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/7.png")} alt=""/>)
-        break; 
-        case 8 : 
-          arrayOutput.push
-          (<img key={`tile${i}`} src={require("../assets/images/minesweeper/8.png")} alt=""/>)
-        break; 
-        default : 
-          arrayOutput[i] = <img key={`tile${i}`} src={require("../assets/images/minesweeper/empty.png")} alt=""/>
-      }
-    }
-
-    return arrayOutput ; 
-  }
-
   // game board initialization function
   const gameBoardGen = (rowsNb , colNb , bombsNb) => { 
     const tilesNb = rowsNb * colNb ; 
@@ -203,19 +148,10 @@ function MinesweeperFr () {
       } 
     }
 
-    // Generate display (images) from array of data
-    finalGameBoard = displayGen(finalGameBoard) ; 
-
     return finalGameBoard ; 
   }
 
   const gameBoard = gameBoardGen(5,5,5) ; 
-
-/*   const [ gameBoard , setGameboard ] = useState (null) ; 
-
-  useEffect ( () => {
-    setGameboard ( gameBoardGen(5,5,5) ) ; 
-  } , [gameBoardGen]) ; */ 
 
   return (
     <>
@@ -225,9 +161,13 @@ function MinesweeperFr () {
       </div>
 
       <div className="mineContainer">
-        {gameBoard}
+        {
+          gameBoard.map( (elt , index) => (
+            <Tile key={`tile${index}`} imgData={elt} />
+          ))
+        }        
       </div>
     </>
   )
 }
-export default MinesweeperFr; 
+export default Minesweeper; 

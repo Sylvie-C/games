@@ -1,0 +1,17 @@
+.tileContainer {
+  position: relative; 
+}
+
+.tileContainer img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+}
+
+.hide {
+  display: none; 
+}
+
+.show {
+  display: block; 
+}
