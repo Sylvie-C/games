@@ -1,13 +1,15 @@
 import "./Minesweeper.css" ; 
-// import "../Tile/Tile.css" ; 
+import { useState } from "react" ;  
 import Tile from "../Tile/Tile" ; 
 
-function Minesweeper () {
+function Minesweeper ({gameOver}) {
 
-  const hidePending = () => {
-    const modalPending = document.querySelector(".pending") ; 
+  const [ loose , setLoose ] = useState (false) ; 
+
+  const closeGame = () => {
+    const modalGameover = document.querySelector(".gameOver") ; 
     const mineContainer = document.querySelector(".mineContainer") ; 
-    modalPending.style.display = "none" ; 
+    modalGameover.style.display = "none" ; 
     mineContainer.style.display = "none" ; 
   }
 
@@ -151,23 +153,30 @@ function Minesweeper () {
     return finalGameBoard ; 
   }
 
-  const gameBoard = gameBoardGen(5,5,5) ; 
+  const gameBoard = gameBoardGen(5,5,5) ;  
+
+  const clickedTile = (tileId) => {
+    if (tileId === "X") {
+      setLoose (true) ; 
+    }
+  }
 
   return (
-    <>
-      <div className="pending">WORK ON PROGRESS ... <br/>
-        COMING SOON !!! 
-        <button onClick= { hidePending } >OK</button>
-      </div>
-
-      <div className="mineContainer">
-        {
+    <div className="mineContainer" >
+      {
+        loose 
+        ? 
+        <div className="gameOver">
+          YOU LOOSE !
+          <button onClick= { () => {setTimeout (gameOver("showlist") , 3000)} } >OK</button>
+        </div>  
+        
+        : 
           gameBoard.map( (elt , index) => (
-            <Tile key={`tile${index}`} imgData={elt} />
-          ))
-        }        
-      </div>
-    </>
+          <Tile key={`tile${index}`} imgData={elt} onClick={ (tileId) => clickedTile(tileId) } />
+        ))
+      }        
+    </div>
   )
 }
 export default Minesweeper; 
