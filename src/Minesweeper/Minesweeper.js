@@ -6,12 +6,12 @@ function Minesweeper ({gameOver}) {
 
   const [ loose , setLoose ] = useState (false) ; 
 
-  const closeGame = () => {
+  /* const closeGame = () => {
     const modalGameover = document.querySelector(".gameOver") ; 
     const mineContainer = document.querySelector(".mineContainer") ; 
     modalGameover.style.display = "none" ; 
     mineContainer.style.display = "none" ; 
-  }
+  } */
 
   // Generate array of 5 random numbers for bombs
   const bombsArrIndexGen = (bombsNb , tilesNb) => {
