@@ -30,7 +30,7 @@ function ListEn () {
       case "mine" : 
         setBackground ("mineBackground") ;
         setCloseBtn ("mineClose") ; 
-        setGame (<Minesweeper />) ; 
+        setGame (<Minesweeper gameOver={setDisplay}/>) ; 
         break; 
       default : 
         setBackground ("") ; 
