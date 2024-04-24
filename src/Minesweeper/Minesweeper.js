@@ -2,16 +2,9 @@ import "./Minesweeper.css" ;
 import { useState } from "react" ;  
 import Tile from "../Tile/Tile" ; 
 
-function Minesweeper ({gameOver}) {
+function Minesweeper ( {gameOver} ) {
 
   const [ loose , setLoose ] = useState (false) ; 
-
-  /* const closeGame = () => {
-    const modalGameover = document.querySelector(".gameOver") ; 
-    const mineContainer = document.querySelector(".mineContainer") ; 
-    modalGameover.style.display = "none" ; 
-    mineContainer.style.display = "none" ; 
-  } */
 
   // Generate array of 5 random numbers for bombs
   const bombsArrIndexGen = (bombsNb , tilesNb) => {
@@ -156,32 +149,32 @@ function Minesweeper ({gameOver}) {
   const gameBoard = gameBoardGen(5,5,5) ;  
 
   const clickedTile = (tileId) => {
-    if (tileId === "X") {
+    if (tileId === "X") { 
       setLoose (true) ; 
     }
   }
 
+  let showAll = false ; 
+
   return (
-    <div className="mineContainer" >
-      <div className="gameOver">
-        WORK ON PROGRESS ... 
-        COMING SOON !!! 
-        <button onClick= { () => {setTimeout (gameOver("showlist") , 3000)} } >OK</button>
-      </div>
+    <>
       {
         loose 
         ? 
-        <div className="gameOver">
-          YOU LOOSE !
-          <button onClick= { () => {setTimeout (gameOver("showlist") , 3000)} } >OK</button>
-        </div>  
-        
+          <>
+            <div className="gameOver">
+              YOU LOOSE !
+              <button onClick= { () => {setTimeout (gameOver("showlist") , 3000)} } >OK</button>
+            </div>  
+          </>
         : 
-          gameBoard.map( (elt , index) => (
-          <Tile key={`tile${index}`} imgData={elt} onClick={ (tileId) => clickedTile(tileId) } />
-        ))
-      }        
-    </div>
+          <div className="mineContainer" >
+            {gameBoard.map( (elt , index) => (
+              <Tile key={`tile${index}`} imgData={elt} onClick={ (tileId) => clickedTile(tileId) } show={showAll}/>
+            ))}
+          </div>
+      }          
+    </>
   )
 }
 export default Minesweeper; 

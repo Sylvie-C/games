@@ -1,9 +1,17 @@
 
 import "./Tile.css" ; 
-import { useState } from "react" ; 
+import { useState , useEffect } from "react" ; 
 
-function Tile ( { imgData , onClick } ) {
+function Tile ( { imgData , onClick , show } ) {
   const [ showTile , setShowtile ] = useState(false) ; 
+
+  useEffect (
+    () => { 
+      if (show === true) { 
+        setShowtile(true) 
+      } 
+    } , [setShowtile , show]
+  )
   
   // send clicked tile id via "onClick" prop
   const clickedTileId = (tileId) => { onClick (tileId) } ; 
@@ -52,9 +60,10 @@ function Tile ( { imgData , onClick } ) {
   }
 
   return (
+    
     <div className="tileContainer" data-tileid={imgData} onClick={ (evt) => handleClick (evt) } > 
       {
-        showTile ? imgElt : <img className="emptyTile" src={require("../assets/images/minesweeper/empty.png")} alt="empty tile"/>
+        showTile ? imgElt : <img src={require("../assets/images/minesweeper/empty.png")} alt="empty tile"/>
       }
     </div>
   )
