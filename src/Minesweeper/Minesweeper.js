@@ -163,6 +163,11 @@ function Minesweeper ({gameOver}) {
 
   return (
     <div className="mineContainer" >
+      <div className="gameOver">
+        WORK ON PROGRESS ... 
+        COMING SOON !!! 
+        <button onClick= { () => {setTimeout (gameOver("showlist") , 3000)} } >OK</button>
+      </div>
       {
         loose 
         ? 
