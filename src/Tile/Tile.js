@@ -5,9 +5,13 @@ import { useState , useEffect } from "react" ;
 function Tile ( { imgData , onClick , show } ) {
   const [ showTile , setShowtile ] = useState(false) ; 
 
-  if (show === true) {
-    setShowtile(true) ; 
-  }
+  useEffect (
+    () => { 
+      if (show === true) { 
+        setShowtile(true) 
+      } 
+    } , [ show , setShowtile]
+  )
   
   // send clicked tile id via "onClick" prop
   const clickedTileId = (tileId) => { onClick (tileId) } ; 

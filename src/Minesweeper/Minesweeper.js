@@ -154,7 +154,7 @@ function Minesweeper ( {gameOver} ) {
     }
   }
 
-  let showAll = false ; 
+  const showAll = false ; 
 
   return (
     <>
