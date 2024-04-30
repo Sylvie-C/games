@@ -4,9 +4,10 @@ import Tile from "../Tile/Tile" ;
 
 
 
-function Minesweeper ( {gameOver} ) {
+function Minesweeper ( {gameOver , rows, cols, bombs} ) {
   const [ loose , setLoose ] = useState(false) ; 
-  // const [ win , setWin ] = useState(false) ; 
+  const [ win , setWin ] = useState(false) ; 
+  const [ count , setCount ] = useState(1) ; 
 
   useEffect (
     () => {
@@ -16,11 +17,11 @@ function Minesweeper ( {gameOver} ) {
       if (loose) {
         gameOverText.textContent = "You loose ! " ; 
         gameOver.classList.remove("hide") ; 
-      } /* else if (win) {
+      } else if (win) {
         gameOverText.textContent = "You win ! " ; 
         gameOver.classList.remove("hide") ; 
-      } */
-    } , [ loose /* , win */ ]
+      }
+    } , [ loose , win ]
   ) ; 
 
   // Generate array of 5 random numbers for bombs
@@ -163,17 +164,30 @@ function Minesweeper ( {gameOver} ) {
     return finalGameBoard ; 
   }
 
-  const gameBoardData = gameBoardGen (5,5,5) ; 
+  // Initialize tiles data in board, based on rows, columns and bombs number
+  const gameBoardData = gameBoardGen(rows,cols,bombs) ; 
 
   // initialize game board data in state
   // eslint-disable-next-line
   const [ gameBoard , setGameBoard ] = useState(gameBoardData) ; 
 
   const clickedTile = (tileId) => {
+    setCount(count+1) ; 
     if (tileId === "X") { 
       setLoose (true) ; 
-    } 
+    } else {
+      if (count === ((rows*cols)-bombs) ) {
+        setWin(true) ; 
+      }
+    }
   }
+
+
+
+  console.log ("count in state ? : " , count) ; 
+
+
+
 
   return (
     <>

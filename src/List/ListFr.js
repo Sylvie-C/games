@@ -30,7 +30,7 @@ function ListFr () {
       case "mine" : 
         setBackground ("mineBackground") ;
         setCloseBtn ("mineClose") ; 
-        setGame (<Minesweeper gameOver={setDisplay}/>) ; 
+        setGame (<Minesweeper gameOver={setDisplay} rows={5} cols={5} bombs={5} />) ; 
         break; 
       default : 
         setBackground ("") ; 
