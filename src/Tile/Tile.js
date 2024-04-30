@@ -2,7 +2,7 @@
 import "./Tile.css" ; 
 import { useState } from "react" ; 
 
-function Tile ( { imgData , onClick } ) {
+function Tile ( { imgData , onClick , show } ) {
   const [ showTile , setShowtile ] = useState(false) ; 
   
   // send clicked tile id via "onClick" prop

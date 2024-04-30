@@ -3,23 +3,30 @@ import { useState , useEffect } from "react" ;
 import Tile from "../Tile/Tile" ; 
 
 
-
 function Minesweeper ( {gameOver , rows, cols, bombs} ) {
   const [ loose , setLoose ] = useState(false) ; 
   const [ win , setWin ] = useState(false) ; 
-  const [ count , setCount ] = useState(1) ; 
+  const [ count , setCount ] = useState(1) ;  
 
   useEffect (
     () => {
       const gameOver = document.querySelector(".gameOver") ; 
       const gameOverText = document.querySelector(".gameOver--text") ; 
 
+      const emptyTiles = document.getElementsByClassName("emptyTile") ; 
+
       if (loose) {
         gameOverText.textContent = "You loose ! " ; 
         gameOver.classList.remove("hide") ; 
+        
       } else if (win) {
         gameOverText.textContent = "You win ! " ; 
         gameOver.classList.remove("hide") ; 
+
+        // on win, show bombs
+        for (let i=0; i<emptyTiles.length; i++) {
+          emptyTiles[i].src =require("../assets/images/minesweeper/bomb.png") ; 
+        }
       }
     } , [ loose , win ]
   ) ; 
@@ -183,12 +190,6 @@ function Minesweeper ( {gameOver , rows, cols, bombs} ) {
   }
 
 
-
-  console.log ("count in state ? : " , count) ; 
-
-
-
-
   return (
     <>
       <div className="gameOver hide">
@@ -197,9 +198,9 @@ function Minesweeper ( {gameOver , rows, cols, bombs} ) {
       </div>  
 
       <div className="mineContainer" >
-        {
+        { 
           gameBoard?.map( (elt , index) => (
-            <Tile key={`tile${index}`} imgData={elt} onClick={ (tileId) => clickedTile(tileId) } />
+            <Tile key={`tile${index}`} imgData={elt} onClick={ (tileId) => clickedTile(tileId) } show={win ? true : false} />
           ))
         }
       </div>
