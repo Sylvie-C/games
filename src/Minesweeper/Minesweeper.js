@@ -1,10 +1,27 @@
 import "./Minesweeper.css" ; 
-import { useState } from "react" ;  
+import { useState , useEffect } from "react" ;  
 import Tile from "../Tile/Tile" ; 
 
-function Minesweeper ( {gameOver} ) {
 
-  const [ loose , setLoose ] = useState (false) ; 
+
+function Minesweeper ( {gameOver} ) {
+  const [ loose , setLoose ] = useState(false) ; 
+  // const [ win , setWin ] = useState(false) ; 
+
+  useEffect (
+    () => {
+      const gameOver = document.querySelector(".gameOver") ; 
+      const gameOverText = document.querySelector(".gameOver--text") ; 
+
+      if (loose) {
+        gameOverText.textContent = "You loose ! " ; 
+        gameOver.classList.remove("hide") ; 
+      } /* else if (win) {
+        gameOverText.textContent = "You win ! " ; 
+        gameOver.classList.remove("hide") ; 
+      } */
+    } , [ loose /* , win */ ]
+  ) ; 
 
   // Generate array of 5 random numbers for bombs
   const bombsArrIndexGen = (bombsNb , tilesNb) => {
@@ -146,34 +163,32 @@ function Minesweeper ( {gameOver} ) {
     return finalGameBoard ; 
   }
 
-  const gameBoard = gameBoardGen(5,5,5) ;  
+  const gameBoardData = gameBoardGen (5,5,5) ; 
+
+  // initialize game board data in state
+  // eslint-disable-next-line
+  const [ gameBoard , setGameBoard ] = useState(gameBoardData) ; 
 
   const clickedTile = (tileId) => {
     if (tileId === "X") { 
       setLoose (true) ; 
-    }
+    } 
   }
-
-  const showAll = false ; 
 
   return (
     <>
-      {
-        loose 
-        ? 
-          <>
-            <div className="gameOver">
-              YOU LOOSE !
-              <button onClick= { () => {setTimeout (gameOver("showlist") , 3000)} } >OK</button>
-            </div>  
-          </>
-        : 
-          <div className="mineContainer" >
-            {gameBoard.map( (elt , index) => (
-              <Tile key={`tile${index}`} imgData={elt} onClick={ (tileId) => clickedTile(tileId) } show={showAll}/>
-            ))}
-          </div>
-      }          
+      <div className="gameOver hide">
+        <p className="gameOver--text"></p>
+        <button onClick= { () => { gameOver("showlist") } } >OK</button>
+      </div>  
+
+      <div className="mineContainer" >
+        {
+          gameBoard?.map( (elt , index) => (
+            <Tile key={`tile${index}`} imgData={elt} onClick={ (tileId) => clickedTile(tileId) } />
+          ))
+        }
+      </div>
     </>
   )
 }

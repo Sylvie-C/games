@@ -1,17 +1,9 @@
 
 import "./Tile.css" ; 
-import { useState , useEffect } from "react" ; 
+import { useState } from "react" ; 
 
 function Tile ( { imgData , onClick , show } ) {
   const [ showTile , setShowtile ] = useState(false) ; 
-
-  useEffect (
-    () => { 
-      if (show === true) { 
-        setShowtile(true) 
-      } 
-    } , [ show , setShowtile]
-  )
   
   // send clicked tile id via "onClick" prop
   const clickedTileId = (tileId) => { onClick (tileId) } ; 
@@ -21,37 +13,37 @@ function Tile ( { imgData , onClick , show } ) {
 
   switch (imgData) {
     case ("X") :
-      imgElt = <img src={require("../assets/images/minesweeper/bomb.png")} alt="bomb ! you loose !"/> 
+      imgElt = <img data-tileid="X" src={require("../assets/images/minesweeper/bomb.png")} alt="bomb ! you loose !"/> 
     break; 
     case 0 : 
-      imgElt = <img src={require("../assets/images/minesweeper/0.png")} alt="0 bombs around"/>
+      imgElt = <img data-tileid="0" src={require("../assets/images/minesweeper/0.png")} alt="0 bombs around"/>
     break; 
     case 1 : 
-      imgElt = <img src={require("../assets/images/minesweeper/1.png")} alt="1 bomb around"/>
+      imgElt = <img data-tileid="1" src={require("../assets/images/minesweeper/1.png")} alt="1 bomb around"/>
     break; 
     case 2 : 
-      imgElt = <img src={require("../assets/images/minesweeper/2.png")} alt="2 bombs around"/>
+      imgElt = <img data-tileid="2" src={require("../assets/images/minesweeper/2.png")} alt="2 bombs around"/>
     break; 
     case 3 : 
-      imgElt = <img src={require("../assets/images/minesweeper/3.png")} alt="3 bombs around"/>
+      imgElt = <img data-tileid="3" src={require("../assets/images/minesweeper/3.png")} alt="3 bombs around"/>
     break; 
     case 4 :
-      imgElt = <img src={require("../assets/images/minesweeper/4.png")} alt="4 bombs around"/>
+      imgElt = <img data-tileid="4" src={require("../assets/images/minesweeper/4.png")} alt="4 bombs around"/>
     break; 
     case 5 : 
-      imgElt = <img src={require("../assets/images/minesweeper/5.png")} alt="5 bombs around"/>
+      imgElt = <img data-tileid="5" src={require("../assets/images/minesweeper/5.png")} alt="5 bombs around"/>
     break; 
     case 6 : 
-      imgElt = <img src={require("../assets/images/minesweeper/6.png")} alt="6 bombs around"/>
+      imgElt = <img data-tileid="6" src={require("../assets/images/minesweeper/6.png")} alt="6 bombs around"/>
     break; 
     case 7 : 
-      imgElt = <img src={require("../assets/images/minesweeper/7.png")} alt="7 bombs around"/>
+      imgElt = <img data-tileid="7" src={require("../assets/images/minesweeper/7.png")} alt="7 bombs around"/>
     break; 
     case 8 : 
-      imgElt = <img src={require("../assets/images/minesweeper/8.png")} alt="8 bombs around"/>
+      imgElt = <img data-tileid="8" src={require("../assets/images/minesweeper/8.png")} alt="8 bombs around"/>
     break; 
     default : 
-      imgElt = <img src={require("../assets/images/minesweeper/empty.png")} alt="empty tile"/>
+      imgElt = <img data-tileid="empty" src={require("../assets/images/minesweeper/empty.png")} alt="empty tile"/>
   }
 
   const handleClick = (event) => {
@@ -63,7 +55,7 @@ function Tile ( { imgData , onClick , show } ) {
     
     <div className="tileContainer" data-tileid={imgData} onClick={ (evt) => handleClick (evt) } > 
       {
-        showTile ? imgElt : <img src={require("../assets/images/minesweeper/empty.png")} alt="empty tile"/>
+        showTile ? imgElt : <img className="emptyTile" src={require("../assets/images/minesweeper/empty.png")} alt="empty tile"/>
       }
     </div>
   )

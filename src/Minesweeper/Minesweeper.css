@@ -35,11 +35,17 @@
   z-index: 1000; 
 }
 
+.gameOver--text {
+  font-family: pixel; 
+  font-size: 20px; 
+  margin: 0 20px; 
+}
+
 .gameOver button {
   background: rgb(10, 90, 90); 
   font-family: pixel; 
-  width: 100px; 
-  height: 50px; 
+  width: 70px; 
+  height: 30px; 
   border-radius: 24px; 
 }
 
@@ -47,6 +53,10 @@
   cursor: pointer; 
   color: rgb(10,90,90); 
   background: white; 
+}
+
+.hide {
+  display: none; 
 }
 
 
