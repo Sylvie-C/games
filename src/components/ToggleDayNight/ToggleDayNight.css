@@ -1,0 +1,59 @@
+:root {
+  --color-btn01: #410070; 
+  --color-btn02: #c587ff; 
+}
+
+.themeBtn {
+  position: relative; 
+  top: 2em; 
+  left: calc(100% - 4em); 
+
+  width: 4em; 
+  height: 1.5em;
+
+  padding: 0 0.2em;
+  margin: 0;
+
+  background-color: var(--color-btn01) ; 
+}
+
+.themeBtn:hover { background-color: var(--color-btn02); } 
+
+.iconsContainer , .circleContainer {
+  width: 90%;
+  height: 100%;
+}
+
+.iconsContainer {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+
+  position: absolute; 
+  top:0; 
+}
+
+.circleContainer {
+  position: absolute; 
+  top: 0;
+  left: 0; 
+  width: 100%; 
+}
+
+.circle {
+  height: 80%; 
+  aspect-ratio: 1/1;
+
+  border-radius: 50%;
+  border: solid 2px white; 
+
+  z-index: 10;
+
+  transition: transform 0.3s ease-out; 
+}
+
+.fade { opacity: 0.5; }
+
+.circleLeft { transform: translateX(0); }
+
+.circleRight { transform: translateX(180%); }
