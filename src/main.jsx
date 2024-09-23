@@ -4,11 +4,14 @@ import { createRoot } from 'react-dom/client'
 import App from './App'
 import './index.css'
 import { ThemeProvider } from "./utils/ThemeContext"
+import { ModalProvider } from './utils/ModalContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>
-      <App />
+      <ModalProvider>
+        <App />
+      </ModalProvider>
     </ThemeProvider>
   </StrictMode>,
 )

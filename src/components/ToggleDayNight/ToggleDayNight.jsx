@@ -31,8 +31,6 @@ export default function ToggleDayNight ( { btnPosition } ) {
     if (circlePosition === "circleRight") { btnLight() }
   }
 
-  console.log ("Theme from 'ToggleComponent' : " , theme)
-
   // OS or browser theme selection
   useEffect (
     () => {

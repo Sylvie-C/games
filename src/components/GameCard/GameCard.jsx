@@ -2,17 +2,18 @@ import { useState , useEffect , useContext } from "react"
 
 import "./GameCard.css"
 import { ThemeContext } from "../../utils/ThemeContext"
+import { ModalContext } from "../../utils/ModalContext"
 
-export default function GameCard ( { title , text } ) {
+export default function GameCard ( { title , text , link } ) {
 
-  const context = useContext(ThemeContext)
-  const { theme } = context
+  const themeContext = useContext(ThemeContext)
+  const { theme } = themeContext
 
-  const [ modalVisible , setModalVisible ] = useState(false)
+  const modalContext = useContext(ModalContext)
+  const { setModalVisible } = modalContext
 
-  const showModal = () => {
-    if (modalVisible) { setModalVisible(false) }
-    if (!modalVisible) { setModalVisible(true) }
+  const handleClick = () => { 
+    setModalVisible(true)
   }
 
   return (
@@ -20,8 +21,8 @@ export default function GameCard ( { title , text } ) {
       <h2>{title}</h2>
       {text} 
       <div className="card-btnsContainer">
-        <button className="card-details" onClick={ showModal }>Program development details</button>
-        <a href="#" className="card-play">Play</a>
+        <button className="card-details" onClick={ handleClick }>Program development details</button>
+        <a href={link} target="_blank" className="card-play">Play</a>
       </div>
     </div>
   )

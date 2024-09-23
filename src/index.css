@@ -15,7 +15,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --radius-small: 8px; 
+  --radius-small: 8px;
+  --radius-medium: 16px;  
 
   --color-base01: #00292e;
   --color-base02: #d8fffa;
