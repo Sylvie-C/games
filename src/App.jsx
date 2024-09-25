@@ -51,16 +51,10 @@ export default function App() {
           link="https://sylvie-c.github.io/fortuneteller/"
         /> 
         <GameCard
-          key="card02"
-          title="Try to guess" 
-          text="Guess the hidden word in a maximum of 20 tries." 
-          link="#"
-        />
-        <GameCard
           key="card03"
           title="Minesweeper" 
           text="Discover all the boxes without clicking on a bomb !" 
-          link="#"
+          link="https://swc-minesweeper-2024.netlify.app/"
         />
       </div>
       <Modal text="Hello World !" />

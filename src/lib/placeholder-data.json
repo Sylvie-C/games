@@ -1,0 +1,7 @@
+{
+  "game-description" : {
+    "fortuneteller" : "This game is made of <strong>Vanilla JavaScript</strong> and <strong>CSS Animations</strong>. <br>Repository Link : https://github.com/Sylvie-C/fortuneteller.<br>Want to download this game on your computer ? \n- Follow Github repository link above, \n- Click on 'Code' green button, \n- Download Zip file, \n- Unzip downloaded file on your computer, \nOpen 'index.html' file in your browser. " , 
+
+    "minesweeper" : "This game is developped with <strong>ReactJS</strong>.<br>Repository link : https://github.com/Sylvie-C/minesweeper. " 
+  }
+}
