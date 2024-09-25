@@ -4,7 +4,7 @@ import "./GameCard.css"
 import { ThemeContext } from "../../utils/ThemeContext"
 import { ModalContext } from "../../utils/ModalContext"
 
-export default function GameCard ( { title , text , link } ) {
+export default function GameCard ( { title , text , link , onClick , cardId } ) {
 
   const themeContext = useContext(ThemeContext)
   const { theme } = themeContext
@@ -12,8 +12,11 @@ export default function GameCard ( { title , text , link } ) {
   const modalContext = useContext(ModalContext)
   const { setModalVisible } = modalContext
 
-  const handleClick = () => { 
+  const clickedCardId = (id) => { onClick (id) }
+
+  const handleClick = (e) => { 
     setModalVisible(true)
+    clickedCardId(e.currentTarget.dataset.cardid)
   }
 
   return (
@@ -21,8 +24,8 @@ export default function GameCard ( { title , text , link } ) {
       <h2>{title}</h2>
       {text} 
       <div className="card-btnsContainer">
-        <button className="card-details" onClick={ handleClick }>Program development details</button>
-        <a href={link} target="_blank" className="card-play">Play</a>
+        <button className="card-details" data-cardid={cardId} onClick={ (e) => handleClick(e) }>Program development details</button>
+        <a className="card-play" href={link} target="_blank" >Play</a>
       </div>
     </div>
   )

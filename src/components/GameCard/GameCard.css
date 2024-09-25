@@ -26,6 +26,29 @@
   justify-content: center; 
 }
 
+.card-play {
+  border-radius: var(--radius-small); 
+  text-decoration: none; 
+
+  padding: 0.6em 1.2em;
+  margin: 0.5em;
+
+  font-size: 1em;
+  font-weight: 700;
+  font-family: inherit;
+
+  cursor: pointer; 
+
+  background: var(--color-card01); 
+  color: var(--color-card02); 
+
+  transition: all 0.25s;
+}
+
+.card-play:hover {
+  transform: scale(1.5); 
+}
+
 .light-card {
   color: var(--color-base01); 
   background: var(--color-base02); 

@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useEffect , useContext } from "react"
 
 import "./Modal.css"
 import { ModalContext } from "../../utils/ModalContext"
@@ -13,15 +13,23 @@ export default function Modal ( { text } ) {
     setModalVisible(false)
   }
 
+  useEffect (
+    () => {
+      if (modalVisible) {
+        const modalText = document.querySelector(".modal-description")
+        modalText.innerHTML = text
+      }
+    } , [modalVisible]
+  )
+
   return (
     <>
       {
         modalVisible && 
         <div className="modal-container" >
           <div className="modal-content" >
-            TEST POUR VOIR
-            <p>{text}</p>
-            <button onClick={ handleClick }>FERMER</button>
+            <p className="modal-description"></p>
+            <button onClick={ handleClick }>Close</button>
           </div>
         </div>
       }

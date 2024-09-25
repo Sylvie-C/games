@@ -1,7 +1,22 @@
 {
-  "game-description" : {
-    "fortuneteller" : "This game is made of <strong>Vanilla JavaScript</strong> and <strong>CSS Animations</strong>. <br>Repository Link : https://github.com/Sylvie-C/fortuneteller.<br>Want to download this game on your computer ? \n- Follow Github repository link above, \n- Click on 'Code' green button, \n- Download Zip file, \n- Unzip downloaded file on your computer, \nOpen 'index.html' file in your browser. " , 
+  "game-description" : [
+    "This game is made of <strong>Vanilla JavaScript</strong> and <strong>CSS Animations</strong>.<br>Want to download this game on your computer ? <br/>- Follow Github repository link below, <br/>- Click on 'Code' green button, <br/>- Download Zip file, <br/>- Unzip downloaded file on your computer, <br/>Open 'index.html' file in your browser. <br><strong>Repository Link : <a href='https://github.com/Sylvie-C/fortuneteller' target='_blank'>https://github.com/Sylvie-C/fortuneteller</a></strong>. " 
+    
+    , 
 
-    "minesweeper" : "This game is developped with <strong>ReactJS</strong>.<br>Repository link : https://github.com/Sylvie-C/minesweeper. " 
-  }
+    "This game is developped with <strong>ReactJS</strong> and <strong>Vite</strong>.<br/>It is deployed with Netlify. <br><strong>Repository link : <a href='https://github.com/Sylvie-C/minesweeper_2024' target='_blank'>https://github.com/Sylvie-C/minesweeper_2024</a></strong>. " 
+  ]
+  , 
+  "game-card" : [
+    { 
+      "title" : "The Fortuneteller" , 
+      "text" : "Do you have a question for the fortuneteller ? This way please ..." , 
+      "link" : "https://sylvie-c.github.io/fortuneteller/" 
+    }, 
+    {
+      "title" : "Minesweeper", 
+      "text" : "Discover all the boxes without clicking on a bomb !", 
+      "link" : "https://swc-minesweeper-2024.netlify.app/"
+    }
+  ]
 }

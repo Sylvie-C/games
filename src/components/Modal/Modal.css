@@ -15,13 +15,23 @@
 }
 
 .modal-content {
-  width: 80%; 
-  height: 80%; 
+  width: 600px; 
+  height: 300px; 
 
+  overflow:scroll; 
+
+  margin: 1em; 
   padding: 1em; 
+  line-height: 1.4em;
 
   border-radius: var(--radius-medium); 
 
   background: var(--color-base02); 
   color: var(--color-base01); 
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 300px; 
+  }
 }
