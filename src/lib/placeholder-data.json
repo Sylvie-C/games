@@ -4,7 +4,7 @@
     
     , 
 
-    "This game is developped with <strong>ReactJS</strong> and <strong>Vite</strong>.<br/>It is deployed with Netlify. <br><strong>Repository link : <a href='https://github.com/Sylvie-C/minesweeper_2024' target='_blank'>https://github.com/Sylvie-C/minesweeper_2024</a></strong>. <br><br>Want to play offline ? <br>- <a href=minesweeper_offline_dist/minesweeper.zip'>Go to zip folder here</a>, <br>- click download icon <img src='/public/download_icon.png' />, <br>- in downloaded folder, launch index.html file." 
+    "This game is developped with <strong>ReactJS</strong> and <strong>Vite</strong>.<br/>It is deployed with Netlify. <br><strong>Repository link : <a href='https://github.com/Sylvie-C/minesweeper_2024' target='_blank'>https://github.com/Sylvie-C/minesweeper_2024</a></strong>. <br><br>Want to play offline ? <br>- <a href='minesweeper_offline_dist/minesweeper.zip'>Go to zip folder here</a>, <br>- click download icon <img src='/public/download_icon.png' />, <br>- in downloaded folder, launch index.html file." 
   ]
   , 
   "game-card" : [
